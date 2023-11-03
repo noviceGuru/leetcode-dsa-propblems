@@ -13,7 +13,7 @@ const areAllEquall = (s: string): boolean => {
         }
     }
 
-    return [...chars.values()].every(el=> el ===  [...chars.values()][0])
+    return (new Set([...chars.values()])).size === 1
 }
 
 console.log(areAllEquall(s))
