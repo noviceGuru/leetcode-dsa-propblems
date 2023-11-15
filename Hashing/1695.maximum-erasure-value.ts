@@ -13,11 +13,12 @@ const input = [4, 2, 4, 5, 6]
 // const input = [10000, 1, 10000, 1, 1, 1, 1, 1, 1]
 
 function maximumUniqueSubarray(nums) {
-    if (nums.length === 1) return nums[0]
+    let length = nums.length
+    if (length === 1) return nums[0]
     let sum = 0
 
     let curr = 0
-    let prefixSum = new Array(nums.length + 1)
+    let prefixSum = new Array(length + 1)
     prefixSum[0] = 0
 
     nums.forEach((num, index) => {
@@ -30,7 +31,7 @@ function maximumUniqueSubarray(nums) {
 
     let set = new Set()
 
-    while ((left < nums.length, right < nums.length)) {
+    while ((right < length)) {
         if (set.has(nums[right + 1])) {
             left++
             set.delete(nums[left - 1])
