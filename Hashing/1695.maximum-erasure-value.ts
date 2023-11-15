@@ -1,4 +1,3 @@
-
 // const input = [
 //     187, 470, 25, 436, 538, 809, 441, 167, 477, 110, 275, 133, 666, 345, 411,
 //     459, 490, 266, 987, 965, 429, 166, 809, 340, 467, 318, 125, 165, 809, 610,
@@ -21,26 +20,23 @@ function maximumUniqueSubarray(nums) {
     let prefixSum = new Array(length + 1)
     prefixSum[0] = 0
 
-    nums.forEach((num, index) => {
-        curr += num
-        prefixSum[index + 1] = curr
-    })
-
     let left = 0,
         right = -1
 
     let set = new Set()
 
-    while ((right < length)) {
+    while (right < length) {
         if (set.has(nums[right + 1])) {
             left++
             set.delete(nums[left - 1])
         } else {
             right++
             set.add(nums[right])
+            curr += nums[right]
+            prefixSum[right + 1] = curr
         }
         if (prefixSum[right + 1]) {
-            sum = Math.max(sum, prefixSum[right + 1] - (prefixSum[left]))
+            sum = Math.max(sum, prefixSum[right + 1] - prefixSum[left])
         }
     }
 
