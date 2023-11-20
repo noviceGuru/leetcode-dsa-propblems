@@ -1,48 +1,37 @@
 // const pattern = "aba",
 //     s = "dog cat cat"
 
-    const pattern = "abba",
-    s = "dog cat cat dog"
-
 // const pattern = "abba",
+//     s = "dog cat cat dog"
+
+// const pattern = "abc",
+//     s = "b c a"
+
+    // const pattern = "abba",
 //     s = "dog cat cat fish"
 
-// const pattern = "abba",
-//     s = "dog dog dog dog"
+const pattern = "abba",
+    s = "dog dog dog dog"
 
 function wordPattern(pattern, s) {
-    if(pattern.length !== s.split(' ').length) return false
-    let ans = true
-
-    let patternArr = [...pattern]
+    let patArr = [...pattern]
     let sArr = s.split(' ')
+    if(patArr.length !== sArr.length) return false
 
-    let patternMap = new Map()
-    let sMap = new Map()
+    let patMap = new Map()
 
-    patternArr.forEach((char, i) => {
-        if(patternMap.has(char)){
-            if(patternMap.get(char) !== sArr[i]){
-                ans = false
-                return
+    for (let i = 0; i < patArr.length; i++) {
+        if(patMap.has(patArr[i])){
+            if(patMap.get(patArr[i]) !== sArr[i]){
+                return false
             }
         }else{
-            patternMap.set(char, sArr[i])
+            patMap.set(patArr[i], sArr[i])
         }
-    })
-    
-    sArr.forEach((char, i) => {
-        if(sMap.has(char)){
-            if(sMap.get(char) !== patternArr[i]){
-                ans = false
-                return
-            }
-        }else{
-            sMap.set(char, patternArr[i])
-        }
-    })
+    }
+    const values = Array.from(patMap.values())
 
-    return ans
+    return values.length === new Set(values).size
 }
 
 console.log(wordPattern(pattern, s))
