@@ -20,7 +20,6 @@ function closeStrings(word1, word2) {
         map2.set(word2.charAt(i), (map2.get(word2.charAt(i)) || 0) + 1)
     }
 
-    console.log(map1, map2)
     if (map1.size !== map2.size) return false
 
     const arrVals1 = Array.from(map1).sort((a, b) => a - b)
@@ -35,25 +34,8 @@ function closeStrings(word1, word2) {
 
     if (arrVals1 !== arrVals2) return false
 
-    map1.forEach((val, key) => {
-        map1.set(val, key)
-    })
-
-    map2.forEach((val, key) => {
-        map2.set(val, key)
-    })
-
-
-
     map1.forEach((val1, key) => {
-        if (!map2.has(key) || !map2.has(val1)) {
-            ans = false
-            return ans
-        }
-    })
-
-    map2.forEach((val1, key) => {
-        if (!map1.has(key) || !map1.has(val1)) {
+        if (!map2.has(key)) {
             ans = false
             return ans
         }
@@ -64,7 +46,3 @@ function closeStrings(word1, word2) {
 }
 
 console.log(closeStrings(word1, word2))
-
-// a 1     b 1
-// b 2     c 2
-// c 3     a 3
