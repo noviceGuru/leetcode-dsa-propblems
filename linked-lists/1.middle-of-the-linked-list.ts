@@ -3,7 +3,7 @@ const middleNode = (head: ListNode | null): ListNode | null => {
     let fast = head
 
     while(fast && fast.next){
-        slow = slow?.next
+        slow = slow!.next
         fast = fast.next.next
     }
 
